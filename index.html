@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TheDevAbir | CodeCrafted — stop rambling. start persuading</title>
+    <!-- Removed missing local CSS/JS. Keeping Font Awesome kit for icons. -->
+    <script src="https://kit.fontawesome.com/71d7882a48.js" crossorigin="anonymous"></script>
+    <!-- Rock Salt font for brand logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style>
+        /* Futuristic Design System */
+        :root {
+            /* Neon Colors */
+            --neon-cyan: #00ffff;
+            --neon-purple: #bf00ff;
+            --neon-pink: #ff0080;
+            --neon-green: #00ff41;
+            --neon-blue: #0080ff;
+            --neon-orange: #ff4000;
+            
+            /* Dark Theme */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #16213e;
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --bg-glass-hover: rgba(255, 255, 255, 0.1);
+            
+            /* Text */
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5d6;
+            --text-muted: #7a8ba0;
+            --text-accent: var(--neon-cyan);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            --gradient-secondary: linear-gradient(135deg, var(--neon-pink), var(--neon-orange));
+            --gradient-bg: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            
+            /* Shadows */
+            --shadow-neon: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan), 0 0 80px var(--neon-cyan);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Professional animated color accents */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h2, h3 {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+            background-size: 200% 200%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradientShift 12s ease infinite;
+        }
+        /* Disable gradient animation for logo when using Rock Salt */
+        .logo { animation: none; background-size: initial; }
+        .square i { transition: transform .25s ease, filter .25s ease; }
+        .square:hover i { transform: scale(1.08) rotate(-2deg); filter: drop-shadow(0 10px 22px rgba(0,255,255,.35)); }
+
+        /* Light Theme Overrides */
+        :root[data-theme='light'] {
+            --bg-primary: #f6f7fb;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #eaf0ff;
+            --bg-glass: rgba(0, 0, 0, 0.04);
+            --bg-glass-hover: rgba(0,0,0,0.06);
+            --text-primary: #0b1220;
+            --text-secondary: #2a3a55;
+            --text-muted: #5c6b80;
+            --gradient-bg: linear-gradient(135deg, #f6f7fb 0%, #ffffff 50%, #eaf0ff 100%);
+            --shadow-neon: 0 0 20px rgba(0, 255, 255, 0.35), 0 0 40px rgba(0, 255, 255, 0.2), 0 0 80px rgba(0, 255, 255, 0.15);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-elevated: 0 20px 60px rgba(20, 40, 80, 0.15);
+        }
+
+        /* Base Reset */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        html, body { 
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-bg);
+            z-index: -2;
+        }
+
+        /* Subtle noise overlay for professionalism */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(191, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 0, 128, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Optional grain/noise layer to make gradients feel more premium */
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .05;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 { 
+            font-weight: 700; 
+            letter-spacing: -0.025em;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 { 
+            font-size: clamp(2.5rem, 8vw, 6rem); 
+            line-height: 0.9;
+            text-shadow: var(--shadow-neon);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+
+        h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.4rem, 3vw, 2rem); }
+
+        /* Glass Morphism Components */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: var(--shadow-glass);
+        }
+
+        .glass:hover {
+            background: var(--bg-glass-hover);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        /* Layout */
+        .section { 
+            padding: clamp(60px, 8vw, 120px) 20px; 
+            position: relative;
+        }
+
+        .section > div { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+
+        /* Distinct background colors per section */
+        .section:nth-of-type(1)  { background: #0a0a0f; }
+        .section:nth-of-type(2)  { background: #0d1220; }
+        .section:nth-of-type(3)  { background: #101635; }
+        .section:nth-of-type(4)  { background: #0e223a; }
+        .section:nth-of-type(5)  { background: #171a2a; }
+        .section:nth-of-type(6)  { background: #0f1c2e; }
+        .section:nth-of-type(7)  { background: #1a1330; }
+        .section:nth-of-type(8)  { background: #0d1f1f; }
+        .section:nth-of-type(9)  { background: #241a0f; }
+        .section:nth-of-type(10) { background: #1e1024; }
+        .section:nth-of-type(11) { background: #0f1a24; }
+
+        /* Light theme section backgrounds for clarity/contrast */
+        :root[data-theme='light'] .section:nth-of-type(1)  { background: #ffffff; }
+        :root[data-theme='light'] .section:nth-of-type(2)  { background: #f6f7fb; }
+        :root[data-theme='light'] .section:nth-of-type(3)  { background: #eef3ff; }
+        :root[data-theme='light'] .section:nth-of-type(4)  { background: #f5fbff; }
+        :root[data-theme='light'] .section:nth-of-type(5)  { background: #ffffff; }
+        :root[data-theme='light'] .section:nth-of-type(6)  { background: #f3f7fb; }
+        :root[data-theme='light'] .section:nth-of-type(7)  { background: #fff3ff; }
+        :root[data-theme='light'] .section:nth-of-type(8)  { background: #f3fffd; }
+        :root[data-theme='light'] .section:nth-of-type(9)  { background: #fff8f0; }
+        :root[data-theme='light'] .section:nth-of-type(10) { background: #fff0ff; }
+        :root[data-theme='light'] .section:nth-of-type(11) { background: #f2f8ff; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #ffffff; /* minimal white header */
+            backdrop-filter: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 12px; /* smaller height */
+        }
+
+        header > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.25rem; /* slightly smaller brand for compact header */
+            font-weight: 400;
+            font-family: 'Rock Salt', cursive;
+            color: #0b1220; /* dark text over white header */
+            text-decoration: none;
+            letter-spacing: .2px;
+            -webkit-text-fill-color: currentColor;
+            background: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-left: auto; /* nudge nav further right */
+        }
+
+        nav a {
+            color: #0b1220; /* dark over white */
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover { color: #111; }
+
+        /* remove animated underline for a cleaner minimal look */
+        nav a::after { content: none; }
+
+        /* make ghost button readable on white header */
+        header .button.ghost { color: #0b1220; border-color: rgba(0,0,0,0.12); }
+        header .button.ghost:hover { border-color: rgba(0,0,0,0.22); }
+
+        /* Minimal theme toggle (icon-only) */
+        header #themeToggle { border: none; background: transparent; box-shadow: none; padding: 6px 8px; }
+        header #themeToggle:hover { background: rgba(0,0,0,0.06); }
+        :root[data-theme='light'] header #themeToggle:hover { background: rgba(0,0,0,0.06); }
+        :root[data-theme='dark'] header #themeToggle:hover { background: rgba(255,255,255,0.08); }
+
+        /* Buttons: professional redesign */
+        .button {
+            --btn-bg: var(--gradient-primary);
+            --btn-border: rgba(255,255,255,0.2);
+            --btn-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            --btn-shadow-hover: 0 18px 50px rgba(0,0,0,0.5);
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: .6rem; padding: 14px 26px; border-radius: 14px;
+            background: var(--btn-bg); color: #071018;
+            text-decoration: none; font-weight: 700; letter-spacing: .2px;
+            border: 1px solid var(--btn-border); cursor: pointer;
+            transition: transform .18s ease, box-shadow .25s ease, border-color .25s ease, filter .25s ease;
+            box-shadow: var(--btn-shadow); position: relative; overflow: hidden;
+        }
+        .button .ico { font-size: 1.1rem; }
+        .button::after { /* ripple */
+            content: '';
+            position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(120px 120px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.25), transparent 60%);
+            opacity: 0; transition: opacity .35s ease;
+        }
+        .button:hover { transform: translateY(-2px); box-shadow: var(--btn-shadow-hover); border-color: rgba(255,255,255,0.35); }
+        .button:hover::after { opacity: .6; }
+        .button:active { transform: translateY(0); filter: brightness(.98); }
+        .button.alternative { --btn-bg: var(--gradient-secondary); }
+        .button.ghost { --btn-bg: transparent; color: var(--text-primary); border-color: rgba(255,255,255,0.25); }
+        .button.ghost:hover { border-color: rgba(255,255,255,0.45); }
+        .button.small { padding: 10px 14px; border-radius: 12px; font-weight: 600; }
+        :root[data-theme='light'] .button {
+            --btn-border: rgba(0,0,0,0.15);
+            --btn-shadow: 0 10px 25px rgba(10, 40, 80, 0.15);
+            --btn-shadow-hover: 0 18px 45px rgba(10, 40, 80, 0.25);
+            color: #08131b;
+        }
+        :root[data-theme='light'] .button.ghost { color: #0b1220; border-color: rgba(0,0,0,0.15); }
+        @media (prefers-reduced-motion: reduce) { .button, .button::after { transition: none; } }
+
+        /* Enhanced Book me button */
+        .button.bookme {
+            position: relative;
+            isolation: isolate;
+            --btn-bg: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: #071018;
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 10px 30px rgba(0,255,255,0.25), inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+        .button.bookme::before {
+            content: '';
+            position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+            padding: 1px; background: linear-gradient(135deg, rgba(0,255,255,.7), rgba(191,0,255,.7));
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            animation: borderPulse 3s ease-in-out infinite;
+        }
+        .button.bookme::after {
+            /* reuse ripple, add sheen */
+            background: radial-gradient(120px 120px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.25), transparent 60%),
+                        linear-gradient(120deg, transparent 0%, rgba(255,255,255,.35) 30%, transparent 60%);
+            mix-blend-mode: screen;
+        }
+        .button.bookme:hover { box-shadow: 0 18px 50px rgba(0,255,255,0.35), inset 0 0 0 1px rgba(255,255,255,0.12); }
+        @keyframes borderPulse { 0%,100%{ filter: brightness(1);} 50%{ filter: brightness(1.2);} }
+
+        /* Hero Section */
+        .opening {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        /* Hero animated background (TSX canvas layer) */
+        .opening .hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+        .hero-canvas-layer { position: absolute; inset: 0; }
+        .hero-canvas-layer canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+        /* Subtle moving scan line for extra futurism */
+        .opening::after {
+            content: '';
+            position: absolute; left: 0; right: 0; top: 15%; height: 2px; z-index: 0;
+            background: linear-gradient(90deg, transparent, rgba(0,255,255,.6), transparent);
+            animation: scan 6s linear infinite;
+            opacity: .5;
+        }
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(70vh); }
+        }
+
+        /* Legacy blob keyframes kept for potential reuse */
+        @keyframes drift1 { 0%,100%{ transform: translate(0,0) scale(1);} 50%{ transform: translate(6%, -4%) scale(1.1);} }
+        @keyframes drift2 { 0%,100%{ transform: translate(0,0) scale(1);} 50%{ transform: translate(-5%, 6%) scale(1.05);} }
+        @keyframes drift3 { 0%,100%{ transform: translate(0,0) scale(1);} 50%{ transform: translate(3%, -6%) scale(1.15);} }
+
+        /* Hero headline redesign (Aurora style) */
+        .headline-aurora { 
+            margin-bottom: 2rem; 
+            line-height: .9;
+            letter-spacing: -0.03em;
+        }
+        .headline-aurora .line { display: block; font-weight: 800; }
+        /* Remove static gradient/stroke and add animated color cycle on hero text */
+        .opening h1 { text-shadow: none; animation: none; }
+        .opening .headline-aurora .line { 
+            background: none; 
+            -webkit-background-clip: initial; 
+            background-clip: initial; 
+            -webkit-text-fill-color: currentColor; 
+            -webkit-text-stroke: 0; 
+            text-shadow: none; 
+            animation: colorCycle 6s linear infinite; 
+        }
+        .opening .headline-aurora .line.bottom { animation-delay: .3s; }
+        @keyframes colorCycle {
+            0%   { color: var(--neon-cyan); }
+            20%  { color: var(--neon-purple); }
+            40%  { color: var(--neon-pink); }
+            60%  { color: var(--neon-orange); }
+            80%  { color: var(--neon-green); }
+            100% { color: var(--neon-cyan); }
+        }
+
+        .opening h1 {
+            margin-bottom: 2rem;
+            transform: perspective(1000px) rotateX(15deg);
+        }
+
+        .opening h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid.hero-icons {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 4rem 0;
+        }
+
+        .grid.hero-icons > div {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--bg-glass);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .grid.hero-icons > div:hover {
+            transform: translateY(-10px);
+            background: var(--bg-glass-hover);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .grid.hero-icons i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        /* Credibility Section */
+        .credibility .grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .credibility .stat {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .credibility .stat h2 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial .slide {
+            min-width: 100%;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .testimonial blockquote {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .controls input[type="radio"] {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .controls input[type="radio"].active {
+            background: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        /* Accordion */
+        .accordion {
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .accordion:hover {
+            background: var(--bg-glass-hover);
+            border-color: var(--neon-cyan);
+        }
+
+        .panel {
+            display: none;
+            padding: 2rem 0;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Icons */
+        .square {
+            width: 80px;
+            height: 80px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .square:hover {
+            background: var(--bg-glass-hover);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .square i {
+            font-size: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Forms */
+        form {
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        input[type="submit"] {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: var(--bg-primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .site-footer {
+            position: relative;
+            background: radial-gradient(1200px 600px at 10% -10%, rgba(0,255,255,.12), transparent 60%),
+                        radial-gradient(900px 500px at 120% 110%, rgba(191,0,255,.12), transparent 60%),
+                        var(--bg-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        :root[data-theme='light'] .site-footer {
+            background: radial-gradient(1200px 600px at 10% -10%, rgba(0,180,255,.12), transparent 60%),
+                        radial-gradient(900px 500px at 120% 110%, rgba(191,0,255,.12), transparent 60%),
+                        var(--bg-secondary);
+            border-top-color: rgba(0,0,0,0.08);
+        }
+        .site-footer .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; gap: 1.5rem; align-items: center; justify-content: space-between; grid-template-columns: 1fr auto; }
+        .site-footer .brand { text-align: left; }
+        .site-footer .brand .tag { color: var(--text-secondary); margin-top: .25rem; }
+        .site-footer .social { list-style: none; display: flex; gap: .75rem; padding: 0; margin: 0; align-items: center; }
+        .site-footer .social-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: var(--bg-glass); border: 1px solid rgba(255,255,255,.12); color: var(--text-primary); transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease; }
+        .site-footer .social-link:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.25); border-color: rgba(255,255,255,.28); }
+        :root[data-theme='light'] .site-footer .social-link { border-color: rgba(0,0,0,.12); }
+        .site-footer .legal { color: var(--text-muted); grid-column: 1 / -1; text-align: center; margin-top: .5rem; font-size: .95rem; }
+
+        .footerPen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        /* PICK section centering + large joker mask */
+        #pick { text-align: center; }
+        #pick > div {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        #pick .mask {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            filter: none; /* remove glow/background effect */
+            animation: maskFloat 6s ease-in-out infinite;
+        }
+        #pick .mask i {
+            font-size: clamp(160px, 26vw, 320px);
+            background: none;
+            -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: currentColor;
+        }
+        @keyframes maskFloat {
+            0%,100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(-2deg); }
+        }
+
+        /* Minimal social row in hero */
+        .social-follow { margin-top: 1.25rem; display: flex; align-items: center; justify-content: center; gap: .75rem; }
+        .social-follow .label { color: var(--text-secondary); font-weight: 600; }
+        .social-minimal { list-style: none; padding: 0; margin: 0; display: flex; gap: .5rem; }
+        .social-minimal a { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); color: var(--text-primary); background: transparent; text-decoration: none; transition: transform .18s ease, border-color .2s ease, background .2s ease, color .2s ease; }
+        .social-minimal a:hover { transform: translateY(-2px); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.28); color: var(--text-accent); }
+        :root[data-theme='light'] .social-minimal a { border-color: rgba(0,0,0,0.16); color: #0b1220; }
+        :root[data-theme='light'] .social-minimal a:hover { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.26); color: #111; }
+
+        /* Scroll reveal animations */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* Subtle animated color effect across most text (professional) */
+        @keyframes textColorPulse {
+            0%   { color: var(--text-primary); }
+            25%  { color: var(--neon-cyan); }
+            50%  { color: var(--neon-purple); }
+            75%  { color: var(--neon-pink); }
+            100% { color: var(--text-primary); }
+        }
+        /* Apply to common text elements but exclude brand logo and buttons */
+        body :where(h1,h2,h3,h4,h5,h6,p,li,a,blockquote,small,label,.tag) {
+            animation: textColorPulse 18s linear infinite;
+        }
+        .logo, .button, .button * { animation: none !important; }
+
+        /* Minimal buttons for PICK section */
+        #pick ul { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+        #pick .button,
+        #pick .button.alternative {
+            --btn-bg: transparent;
+            background: transparent !important;
+            color: var(--text-primary) !important;
+            border: 1px solid rgba(255,255,255,0.18) !important;
+            box-shadow: none !important;
+            padding: 10px 18px !important;
+            border-radius: 10px !important;
+            font-weight: 600 !important;
+        }
+        #pick .button::after { content: none !important; }
+        #pick .button:hover { transform: translateY(-1px); background: rgba(255,255,255,0.06) !important; border-color: rgba(255,255,255,0.28) !important; }
+        #pick .button:active { transform: translateY(0); }
+
+        :root[data-theme='light'] #pick .button,
+        :root[data-theme='light'] #pick .button.alternative {
+            color: #0b1220 !important;
+            border-color: rgba(0,0,0,0.16) !important;
+        }
+        :root[data-theme='light'] #pick .button:hover {
+            background: rgba(0,0,0,0.04) !important;
+            border-color: rgba(0,0,0,0.26) !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .grid.hero-icons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            nav {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header > div {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .grid.hero-icons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .credibility .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 3rem !important;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid.hero-icons {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+            }
+            
+            .button {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow {
+            box-shadow: var(--shadow-neon);
+        }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    </style>
+
+    <!-- redirect to new about page   -->
+    <script>
+        if (window.location.hash === "#about") {
+            window.location.href = "/about";
+        }
+    </script>
+
+
+</head>
+<body>
+
+
+    <!-- include central header -->
+
+    <header>
+        <div>
+            <a href="/" class="logo">TheDevAbir | CodeCrafted</a>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#testimonial">Reviews</a>
+                <a href="#pick">Services</a>
+                <button id="themeToggle" class="button ghost small" aria-pressed="false" title="Toggle theme"><i class="fa-solid fa-moon ico"></i><span class="sr-only">Toggle theme</span></button>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- opening section-->
+
+    <div class="section opening">
+        <div class="hero-bg" aria-hidden="true">
+            <div id="hero-tsx-mount" class="hero-canvas-layer"></div>
+        </div>
+        <div>
+            <h1 class="headline-aurora">
+                <span class="line top">CRAFT CLARITY.</span>
+                <span class="line bottom">IGNITE ACTION.</span>
+            </h1>
+            <h2><script>writeWithUrlParam('n', "Copywriting that moves readers to 'yes', %s", "Copywriting that moves readers to 'yes'");</script></h2>
+            <div class="social-follow">
+                <span class="label">Follow me</span>
+                <ul class="social-minimal">
+                    <li><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- banner -->
+
+    <div class="section">
+        <div>
+            <div class="grid hero-icons">
+                <div><i class="fa-solid fa-globe"></i><p>websites</p></div>
+                <div><i class="fa-solid fa-file-pdf"></i><p>lead gens</p></div>
+                <div><i class="fa-solid fa-envelope"></i><p>emails</p></div>
+                <div><i class="fa-solid fa-person-chalkboard"></i><p>decks</p></div>
+                <div><i class="fa-solid fa-road"></i><p>roadmaps</p></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- self promotion -->
+
+    <div class="section credibility">
+        <div>
+            <h2 class="text-center">A self-promo moment...</h2>
+            <div class="grid">
+                <div class="card stat" data-count-key="rated">
+                    <h2>{{count}}%</h2>
+                    <p>Rated as Top {{count}}% of All Copywriters on <a href="https://www.upwork.com/freelancers/toddsgotapen" target="_blank">Upwork</a></p>
+                </div>
+                <div class="card stat" data-count-key="testimonials">
+                    <h2>{{count}}</h2>
+                    <p>{{count}} recommendations (&amp; climbing) on <a href='https://www.linkedin.com/in/toddsgotapen/details/recommendations/' target="_blank">LinkedIn</a></p>
+                </div>
+                <div class="card stat" data-count-key="storybrand">
+                    <h2>{{count}}+</h2>
+                    <p>Over {{count}} StoryBrand projects delivered<br><a href='/work/' target="_blank">see some</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='wave bottom'></div>
+
+
+
+
+    <!-- blah blah blah -->
+
+    <div class="section">
+        <div>
+            <h2>Blah blah blah</h2>
+            <p>
+                That&apos;s how most businesses sound on the web. Verbose, mundane, without purpose, and full of jargon. This requires brain calories for readers to understand. But understand they won&apos;t. They&apos;ll just leave. <strong>Statistically speaking... this probably applies to your web pages and content.</strong> Like your home page, services pages, LinkedIn profile, emails, and blog posts. I&apos;m just sayin&apos;.
+            </p>
+
+            <h3>More blah blah blah</h3>
+
+            <p class="accordion">Keep reading...</p>
+            <div class="panel">
+                <p>Consider this sorry blurb on a typical consulting site:</p>
+
+                <p><i><highlight>"Our inspired marketing solutions help solve complex challenges while delivering meaningful results."</highlight></i></p>
+
+                <p><b> Really? Do people talk like that? Hell no.</b> Yet people and businesses write like this all across the web. Most sounding the same, yet stating very little.</p>
+
+                <h4>What a great way to present yourself as a commodity.</h4>
+
+                <p>
+                    And, businesses write too much about what they do. But no one cares. People only care what they can get from what you do. Because it's about them, not you, silly. So then, <b>write from the reader&apos;s perspective</b> to connect with your audience. Otherwise, they&apos;ll stay in limbo… far, far away from &lsquo;yes&rsquo;.
+                </p>
+
+                <h4>It&apos;s like this...</h4>
+
+                <p><strong>If people don&apos;t understand you immediately,</strong> they&apos;ll leave without knowing how you can help them. <strong>If you sound like everyone else,</strong> you&apos;ll blend in versus stand out. <strong>If you don&apos;t explain how to solve their problem,</strong> they&apos;ll find someone else who can.
+                </p>
+
+                <h4>In other words...</h4>
+
+                <div class="grid">
+                    <div>
+                        <i class="fa-regular fa-eye-slash fa square"></i>
+                        <p><b>Less people</b> will read your stuff</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-handshake-slash fa square"></i>
+                        <p><b>Less readers</b> will do what you ask</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-store-slash fa square"></i>
+                        <p><b>Less money</b> will flow into your business</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- don't want a writer -->
+
+    <div class="section">
+        <div>
+            <h2><script>writeWithUrlParam('n', "You don't want a writer, %s", "You don't want a writer");</script></h2>
+
+            <p><b>You want a copywriter.</b> Someone who studies psychology more than linguistics. Because what you really want is...</p>
+
+
+            <div class="grid">
+                <div class="text-center">
+                    <div class="square"><i class="fa fa-glasses"></i></div>
+                    <p><strong>More people reading</strong> your entire pages, posts &amp; emails</p>
+                </div>
+                <div class="text-center">
+                    <div class="square"><i class="fa fa-phone"></i></div>
+                    <p><strong>More people contacting</strong> you when thinking of your services</p>
+                </div>
+                <div class="text-center">
+                    <div class="square"><i class="fa fa-heart-pulse"></i></div>
+                    <p><strong>More life to your brand</strong> so it will stand out vs. fit in</p>
+                </div>
+            </div>
+
+            <a class="button bookme" href="/bookme" target="_blank"></a>
+        </div>
+    </div>
+
+
+
+
+    <!-- i'm todd -->
+
+    <div class='wave top'></div>
+    <div id="about" class="section reverse">
+        <div>
+            <h2>I'm Todd Clarke</h2>
+
+            <p><strong>A consultant who writes</strong> to help your readers ‘get it’ sooner, faster, better.</p>
+
+            <h3>Why?</h3>
+            <p><strong>Because people develop trust and buy your services</strong> when they understand you immediately, clearly, and simply.</p>
+
+            <h3>How?</h3>
+            <p><strong>I’ll write your web pages</strong> to clearly explain your business’s services. In plain English, no jargon, no brain translation. Even your kid will understand what expensive problems you solve for people.</p>
+
+            <!--  intro video -->
+
+            <div class='video'>
+                <video controls poster="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+                    <!-- Video source removed because local asset was missing -->
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+<!-- a match -->
+
+    <div class="section">
+        <div>
+            <h2 style="text-align: center"><script>
+                writeWithUrlParam('n', "Are we a match, %s?", "Are we a match?");
+                </script>
+            </h2>
+
+            <div class="grid">
+                <div class="card text-center">
+                    <div class="square"><i class="fa-regular fa-thumbs-up"></i></div>
+                    <h4>Yes if...</h4>
+                    <p>You agree to <u>ditch the jargon</u> for words that sound real, not fake. And, if you have the cojones to be clear, real, and frank with your message.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="square"><i class="fa-regular fa-thumbs-down"></i></div>
+                    <h4>No if...</h4>
+                    <p>You <u>like empty phrases</u> containing words like 'transform', 'disrupt', or 'dynamic' anywhere on your website. And other terms that roll off readers' brains.</p>
+                </div>
+            </div>
+
+            <p class="more"><a href='./fuq' target="_blank">See more reasons</a></p>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- testimonial -->
+
+    <div id='testimonial' class="section reverse testimonial slider">
+        <div class="slides">
+            <div class="slide">
+                <div class="testimonial-mount" data-id="mattb"></div>
+            </div>
+
+            <div class="slide">
+                <div class="testimonial-mount" data-id="robert"></div>
+            </div>
+
+            <div class="slide">
+                <div class="testimonial-mount" data-id="jessicah"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+          <input type="radio" name="slider1" checked>
+          <input type="radio" name="slider1">
+          <input type="radio" name="slider1">
+        </div>
+    </div>
+    <div class='wave bottom'></div>
+
+
+    <!-- get started -->
+
+    <div id="pick" class="section">
+        <div>
+            <span class="mask" aria-hidden="true"><i class="fa-solid fa-masks-theater"></i></span>
+            <p><b>PICK THE RIGHT SERVICE</b></p>
+            <h2>Have we worked together yet?</h2>
+
+            <ul>
+                <li><a class="button" href="./write">nope? go here</a></li>
+                <li><a class="button alternative" href="./services">yup? see more services</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <div id="audit" class="section reverse">
+        <div>
+            <p><b>FREE AUDIT</b></p>
+            <h2>Improve your story</h2>
+            <p>Tell me your home page — I give you useful feedback. Quickly.</p>
+            <div class="download">
+                <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+                <form id="inline" action="./_php/sendmail.php" method="post">
+                    <div>
+                        <input type="text" placeholder="First Name" name="fname" required>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <input type="text" placeholder="Website address" name="url" required>
+                        <input type="submit" value="Get free audit">
+                        <input type="hidden" name="formType" value="audit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- footer with pen -->
+
+    <div class="section footerLine"></div>
+    <div class="footerPen">
+        <div>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 21l3.75-1.25L20.5 6.99a2.12 2.12 0 10-3-3L3.75 16.75 3 21z" stroke="#64748b" fill="#94a3b8"/>
+            </svg>
+        </div>
+        <div>
+            <p>LIFE&#39;S TOO SHORT TO STATE THINGS POORLY.</p>
+            <p>So let&#39;s not.</p>
+        </div>
+    </div>
+
+
+
+    <!-- include central footer -->
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="brand">
+                <a href="/" class="logo">TheDevAbir | CodeCrafted</a>
+                <p class="tag">Words that move readers to yes.</p>
+            </div>
+            <ul class="social">
+                <li><a href="#" aria-label="Twitter" class="social-link"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li><a href="#" aria-label="LinkedIn" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                <li><a href="#" aria-label="GitHub" class="social-link"><i class="fa-brands fa-github"></i></a></li>
+                <li><a href="#" aria-label="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a></li>
+            </ul>
+            <div class="legal">&copy; <span id="year"></span> TheDevAbir | CodeCrafted. All rights reserved.</div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- scripting block for accordion -->
+
+    <script>
+        // Helpers
+        function includeHTML() { /* no-op: removed server-side includes */ }
+        function writeWithUrlParam(param, fmt, fallback) {
+            try {
+                const url = new URL(window.location.href);
+                const v = url.searchParams.get(param);
+                const text = v ? fmt.replace('%s', v) : fallback;
+                document.write(text);
+            } catch (e) { document.write(fallback); }
+        }
+
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Counts injection
+        (function initCounts(){
+            const counts = { rated: 10, testimonials: 80, storybrand: 60 };
+            document.querySelectorAll('[data-count-key]').forEach(node => {
+                const key = node.getAttribute('data-count-key');
+                const val = counts[key] ?? 0;
+                node.innerHTML = node.innerHTML.replaceAll('{{count}}', val);
+            });
+        })();
+
+        // Scroll reveal (fade on enter, fade out on exit)
+        (function initScrollReveal(){
+            const targets = document.querySelectorAll('.section > div');
+            targets.forEach(el => el.classList.add('reveal'));
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+            targets.forEach(el => io.observe(el));
+        })();
+
+        // Testimonials mount
+        (function initTestimonials(){
+            const testimonials = {
+                mattb: {
+                    quote: 'Todd transformed our homepage copy. Conversions up 28%.', name: 'Matt B.'
+                },
+                robert: {
+                    quote: 'Clear, punchy, and on-brand. Will hire again.', name: 'Robert C.'
+                },
+                jessicah: {
+                    quote: 'He made our message click instantly for readers.', name: 'Jessica H.'
+                }
+            };
+            document.querySelectorAll('.testimonial-mount').forEach(m => {
+                const id = m.getAttribute('data-id');
+                const t = testimonials[id];
+                if (!t) return;
+                m.innerHTML = `<blockquote style="font-size:1.1rem; line-height:1.6; margin:0">“${t.quote}”</blockquote><p style="margin:.5rem 0 0; color:#cbd5e1">— ${t.name}</p>`;
+            });
+        })();
+
+        // Simple slider
+        (function initSlider(){
+            const root = document.querySelector('#testimonial');
+            if (!root) return;
+            const slides = root.querySelector('.slides');
+            const radios = Array.from(root.querySelectorAll('.controls input[type="radio"]'));
+            let index = 0;
+            function show(i){
+                index = (i + radios.length) % radios.length;
+                slides.style.transform = `translateX(-${index * 100}%)`;
+                slides.style.transition = 'transform .4s ease';
+                radios.forEach((r, ri) => r.classList.toggle('active', ri === index));
+            }
+            radios.forEach((r, ri) => r.addEventListener('click', () => show(ri)));
+            setInterval(() => show(index + 1), 5000);
+            show(0);
+        })();
+
+        // Accordion
+        (function initAccordion(){
+            var acc = document.getElementsByClassName("accordion");
+            for (var i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+            }
+        })();
+
+        // Theme toggle with persistence and system preference fallback
+        (function initTheme(){
+            const root = document.documentElement;
+            const storageKey = 'theme';
+            function apply(theme){ root.setAttribute('data-theme', theme); }
+            function current(){ return root.getAttribute('data-theme') || 'dark'; }
+            // Initialize
+            const stored = localStorage.getItem(storageKey);
+            if (stored === 'light' || stored === 'dark') {
+                apply(stored);
+            } else {
+                const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                apply(prefersLight ? 'light' : 'dark');
+            }
+            // Toggle button behavior
+            const btn = document.getElementById('themeToggle');
+            if (btn) {
+                const icon = btn.querySelector('i');
+                function syncState(){
+                    const th = current();
+                    btn.setAttribute('aria-pressed', String(th === 'light'));
+                    if (icon){
+                        icon.classList.remove('fa-moon','fa-sun');
+                        icon.classList.add(th === 'light' ? 'fa-sun' : 'fa-moon');
+                    }
+                }
+                syncState();
+                btn.addEventListener('click', () => {
+                    const next = current() === 'light' ? 'dark' : 'light';
+                    apply(next);
+                    localStorage.setItem(storageKey, next);
+                    syncState();
+                });
+            }
+        })();
+
+        // Enhance button ripple by tracking pointer position
+        (function initButtonRipple(){
+            document.addEventListener('pointermove', function(e){
+                var t = e.target;
+                if (!t || !(t instanceof Element)) return;
+                var btn = t.closest ? t.closest('.button') : null;
+                if (!btn) return;
+                var rect = btn.getBoundingClientRect();
+                var x = ((e.clientX - rect.left) / rect.width) * 100;
+                var y = ((e.clientY - rect.top) / rect.height) * 100;
+                btn.style.setProperty('--mx', x + '%');
+                btn.style.setProperty('--my', y + '%');
+            });
+        })();
+    </script>
+
+    <!-- React + Babel for TSX hero background (no build step) -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+    <script type="text/babel" data-type="module" data-presets='["env", "react", "typescript"]' src="./hero-bg.tsx"></script>
+
+  </body>
+
+  </html>
